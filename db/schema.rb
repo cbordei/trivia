@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150227102059) do
     t.boolean  "is_correct"
   end
 
-  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.string   "question"
