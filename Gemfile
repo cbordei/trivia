@@ -43,3 +43,4 @@ group :development, :test do
 end
 gem "haml-rails", "~> 0.8"
 gem "mysql"
+gem "pg"
