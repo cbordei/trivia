@@ -22,7 +22,13 @@ var QuizContainer = React.createClass( {
         success: function(data) {
           this.setState( {
             score: this.state.score + 1,
-            correct_answer: data.answer_id
+            correct_answer: data.correct_answer_id
+          } );
+        }.bind(this),
+        error: function(xhr, status, err) {
+          this.setState( {
+            wrong_answer: xhr.responseJSON.wrong_answer_id,
+            correct_answer: xhr.responseJSON.correct_answer_id
           } );
         }.bind(this)
       });
@@ -44,9 +50,14 @@ var QuizContainer = React.createClass( {
     var choices = this.state.current_question.answers.map( function( choice, index ) {
       var classType  = "";
       var answerId = choice.answer.id
+      if (self.state.user_choice == choice.answer.id) {
+        classType = "active"
+      }
       if ( self.state.verifying_answer ) {
         if (self.state.correct_answer === choice.answer.id) {
-          classType = "text-success";
+          classType = "success";
+        } else if (self.state.wrong_answer === choice.answer.id) {
+          classType = "error";
         }
       }
         return (
@@ -56,11 +67,22 @@ var QuizContainer = React.createClass( {
     var button_name = !this.state.verifying_answer ? "Raspunde" : "Urmatoarea Intrebare";
     return(
       <div className="quizContainer">
-        <h1>B.U.G. Mafia Quiz</h1>
-        <p>{this.state.current_question.question}</p>
-        {choices}
-        <button id="submit" className="btn btn-default" onClick={this.handleSubmit}>{button_name}</button>
-        <ScoreBox score={this.state.score} />
+        <div className="row">
+          <div className="center-block custom">
+            <h1>B.U.G. Mafia Quiz</h1>
+            <div className="question-title">
+              <p>{this.state.current_question.question}</p>
+            </div>  
+            <div id="choises">
+              {choices}
+            </div>
+            <div className="button">
+              <button id="submit" className="btn btn-default" onClick={this.handleSubmit}>{button_name}</button>
+            </div>
+            <ScoreBox score={this.state.score} current_question={this.state.current} />
+          </div>
+        </div>
+        
       </div>
     );
   }
@@ -88,8 +110,9 @@ var ScoreBox = React.createClass( {
   render: function() {
     return (
       <div className="score">
-          <p>Scor: {this.props.score} raspunsuri corecte din {questions.questions.length} possible.</p>
-        </div>
+        <p> Intrebarea <b> {this.props.current_question}</b> din <b>{questions.questions.length}</b> </p>
+        <p>Scor: {this.props.score} raspunsuri corecte din {questions.questions.length} possible.</p>
+      </div>
     );
   }
 } );

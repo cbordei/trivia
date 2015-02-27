@@ -4,4 +4,8 @@ class Question < ActiveRecord::Base
   def random_answers
     answers.shuffle
   end
+
+  def correct_answer
+    answers.where("is_correct=true").first
+  end
 end

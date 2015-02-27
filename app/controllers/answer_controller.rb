@@ -2,9 +2,9 @@ class AnswerController < ApplicationController
   def check_answer
     @answer = Answer.find(params[:id])
     if @answer.is_correct
-      render json: { answer_id: @answer.id, correct: true }, status: 200
+      render json: { correct_answer_id: @answer.id }, status: 200
     else
-      render json: { answer_id: @answer.id, correct: false }, status: 422
+      render json: { correct_answer_id: @answer.question.correct_answer.id, wrong_answer_id: @answer.id }, status: 422
     end 
   end
 end
