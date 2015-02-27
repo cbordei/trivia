@@ -14,7 +14,7 @@ var QuizContainer = React.createClass( {
   handleSubmit: function() {
     var url = "answer/"+this.state.user_choice+"/check_answer";    
     
-    if ( !this.state.verifying_answer ) {
+    if ( !this.state.verifying_answer && this.state.user_choice )  {
       $.ajax({
         url: url,
         dataType: 'json',
@@ -23,11 +23,6 @@ var QuizContainer = React.createClass( {
           this.setState( {
             score: this.state.score + 1,
             correct_answer: data.answer_id
-          } );
-        }.bind(this),
-        error: function(xhr, status, err) {
-          this.setState( {
-            wrong_answer: xhr.responseJSON.answer_id
           } );
         }.bind(this)
       });
@@ -52,8 +47,6 @@ var QuizContainer = React.createClass( {
       if ( self.state.verifying_answer ) {
         if (self.state.correct_answer === choice.answer.id) {
           classType = "text-success";
-        } else if (self.state.wrong_answer === choice.answer.id) {
-          classType = "text-danger";
         }
       }
         return (

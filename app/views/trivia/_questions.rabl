@@ -2,7 +2,7 @@ object false
 
 child @questions => "questions" do |questions|
   attributes :question
-  child :answers do
+  child :random_answers do
     attributes :id, :answer
   end
 end

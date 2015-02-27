@@ -1,5 +1,5 @@
 class TriviaController < ApplicationController
   def index
-    @questions = Question.all
+    @questions = Question.all.shuffle    
   end
 end
