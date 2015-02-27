@@ -43,3 +43,8 @@ group :development, :test do
 end
 gem "haml-rails", "~> 0.8"
 gem "pg"
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
+gem 'showdown-rails'
+gem 'rabl'
