@@ -1,7 +1,7 @@
 var QuizContainer = React.createClass( {
   getInitialState: function() {
       return {
-        current: 0,
+        question_count: 0,
         current_question: questions.questions[ 0 ].question,
         user_choice: "",
         score: 0,
@@ -10,44 +10,75 @@ var QuizContainer = React.createClass( {
   },
   selectedAnswer: function( option ) {
     this.setState( { user_choice: option } );
-  },
-  handleSubmit: function() {
-    var url = "answer/"+this.state.user_choice+"/check_answer";    
+    var url = "answer/"+option+"/check_answer";
+    setTimeout(((function(_this) {
+      return function() {
+        if ( !_this.state.verifying_answer && option )  {
+          $.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'GET',
+            success: function(data) {
+              _this.setState( {
+                score: _this.state.score + 1,
+                correct_answer: data.correct_answer_id
+              } );
+            }.bind(_this),
+            error: function(xhr, status, err) {
+              _this.setState( {
+                wrong_answer: xhr.responseJSON.wrong_answer_id,
+                correct_answer: xhr.responseJSON.correct_answer_id
+              } );
+            }.bind(_this)
+          });
+          _this.setState( { verifying_answer: true } );
+        }
+      };
+    })(this)), 1000);
     
-    if ( !this.state.verifying_answer && this.state.user_choice )  {
-      $.ajax({
-        url: url,
-        dataType: 'json',
-        type: 'GET',
-        success: function(data) {
-          this.setState( {
-            score: this.state.score + 1,
-            correct_answer: data.correct_answer_id
+    setTimeout(((function(_this) {
+      return function() {
+        if ( _this.state.question_count < questions.questions.length -1 ) {
+          _this.setState( {
+            current_question: questions.questions[ _this.state.question_count + 1 ].question,
+            question_count: _this.state.question_count + 1,
+            verifying_answer: false,
+            user_choice: ""
           } );
-        }.bind(this),
-        error: function(xhr, status, err) {
-          this.setState( {
-            wrong_answer: xhr.responseJSON.wrong_answer_id,
-            correct_answer: xhr.responseJSON.correct_answer_id
-          } );
-        }.bind(this)
-      });
-      this.setState( { verifying_answer: true } );
-    } else {
-      if ( this.state.current < questions.questions.length -1 ) {
-        this.setState( {
-          current_question: questions.questions[ this.state.current + 1 ].question,
-          current: this.state.current + 1,
-          verifying_answer: false,
-          user_choice: ""
-        } );
-      }
-    }
-      
-    },
+        } else {
+          url = "trivia/ranking/" + _this.state.score
+          $.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'GET',
+            success: function(data) {          
+              _this.setState({rankName: data.rank.rank_name})
+            }.bind(this)      
+          });
+          _this.setState({finished: true})
+        }
+      };
+    })(this)), 2500);
+  },  
   render: function() {
     var self = this;
-    var choices = this.state.current_question.answers.map( function( choice, index ) {
+    if (this.state.finished) {
+      return(
+        <div className="quizContainer">
+          <div className="row">
+            <div className="center-block custom">
+              <h1>B.U.G. Mafia Quiz</h1>
+              <div className="final-results">
+                Rezultatul tau este {this.state.score} din {questions.questions.length}
+                <br/>
+                Ai rangul de <b>{this.state.rankName}</b>
+              </div>
+            </div>
+          </div>          
+        </div>
+      )
+    } else {      
+      var choices = this.state.current_question.answers.map( function( choice, index ) {
       var classType  = "";
       var answerId = choice.answer.id
       if (self.state.user_choice == choice.answer.id) {
@@ -64,27 +95,33 @@ var QuizContainer = React.createClass( {
           <RadioInput key={choice.answer.answer} choice={choice.answer.answer} index={index} onChoiceSelect={self.selectedAnswer} disable={self.state.verifying_answer} classType={classType} answerId = {answerId}/>
         );
       } );
-    var button_name = !this.state.verifying_answer ? "Raspunde" : "Urmatoarea Intrebare";
-    return(
-      <div className="quizContainer">
-        <div className="row">
-          <div className="center-block custom">
-            <h1>B.U.G. Mafia Quiz</h1>
-            <div className="question-title">
-              <p>{this.state.current_question.question}</p>
-            </div>  
-            <div id="choises">
-              {choices}
+      var complete = Math.round(self.state.question_count * 100 / questions.questions.length)
+      var progresStyle = {
+        width: complete+"%"
+      };
+      return(
+        <div className="quizContainer">
+          <div className="row">
+            <div className="center-block custom">
+              <h1>B.U.G. Mafia Quiz</h1>
+              <div className="question-title">
+                <p>{this.state.current_question.question}</p>
+              </div>  
+              <div id="choises">
+                {choices}
+              </div>
+              <div className="progress custom-progress">
+                <div className="progress-bar" role="progressbar" aria-valuenow="70"
+                 aria-valuemin="0" aria-valuemax="100" style={progresStyle}>
+                  {complete}%
+                </div>
+              </div>
+              <ScoreBox score={this.state.score} current_question={this.state.question_count} />
             </div>
-            <div className="button">
-              <button id="submit" className="btn btn-default" onClick={this.handleSubmit}>{button_name}</button>
-            </div>
-            <ScoreBox score={this.state.score} current_question={this.state.current} />
-          </div>
+          </div>          
         </div>
-        
-      </div>
-    );
+      );
+    }    
   }
 } );
 
@@ -107,10 +144,9 @@ var RadioInput = React.createClass( {
 } );
 
 var ScoreBox = React.createClass( {
-  render: function() {
-    return (
-      <div className="score">
-        <p> Intrebarea <b> {this.props.current_question}</b> din <b>{questions.questions.length}</b> </p>
+  render: function() {  
+    return (      
+      <div className="score">        
         <p>Scor: {this.props.score} raspunsuri corecte din {questions.questions.length} possible.</p>
       </div>
     );

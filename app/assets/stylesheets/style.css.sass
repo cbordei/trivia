@@ -1,7 +1,7 @@
 body  
 
 .custom
-  width:  300px
+  width:  340px
 *
   padding: 0
   margin: 0
@@ -15,19 +15,28 @@ html
 body
   padding: 60px
 
+
 h1
   font-size: 28px
   font-weight: bold
   margin-bottom: 20px
   text-align: center
   width: 340px
+  font-family: goth
 
 #choises
-  list-style: none
+  margin: 4px
+  float: left
   display: inline-block
   width: 340px
   text-align: left
   label
+    margin: 4px
+    background-color: #EFEFEF
+    border-radius: 4px
+    border: 1px solid #D0D0D0
+    overflow: auto
+
     display: block
     padding: 15px 20px
     background-color: #F8F8F8
@@ -35,7 +44,14 @@ h1
     margin-bottom: 3px
     position: relative
     cursor: pointer
+    box-shadow: 2px 2px 2px gray
     transition: 0.3s
+    span
+      text-align: center
+      display: block
+    input
+      position: absolute
+      top: -20px
     b
       position: absolute
       right: 28px
@@ -52,24 +68,40 @@ h1
         color: #fff
     &.error
       color: #fff
-      background-color: #FF3030
+      background-color: #F22613
       b
         color: #fff
     &.success
       color: #fff
-      background-color: #33CC33
+      background-color: #26A65B
       b
-        color: #fff
-
-
-        
+        color: #fff        
 .score
+  width: 340px
   text-align: center
-.button
-  text-align: center
-  margin-bottom: 20px
 .question-title
   width: 340px
   font-size: 20px
   p
     text-align: center
+.custom-progress
+  width: 340px
+  text-align: center
+
+.final-results
+  font-size: 22px
+  margin: 4px
+  background-color: #EFEFEF
+  border-radius: 4px
+  border: 1px solid #D0D0D0
+  overflow: auto
+  text-align: center
+  display: block
+  padding: 15px 20px
+  background-color: #F8F8F8
+  color: #7B8585
+  margin-bottom: 3px
+  position: relative
+  cursor: pointer
+  box-shadow: 2px 2px 2px gray
+  transition: 0.3s
