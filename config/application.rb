@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module BugTrivia
   class Application < Rails::Application
+    config.assets.precompile += [
+      'application.js'
+    ]
     # config.autoload_paths << Rails.root.join('services')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
