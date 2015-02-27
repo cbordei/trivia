@@ -39,5 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
+  gem "pry", '~> 0.10.0'
 end
+gem "haml-rails", "~> 0.8"
 

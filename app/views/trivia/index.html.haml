@@ -1,0 +1,10 @@
+- @questions.each do |question|
+  %h4
+    = question.question
+  %ul
+  - question.answers.each do |answer|
+    %li
+      = answer.answer
+      - if answer.is_correct
+        %span TRUE
+  %br
