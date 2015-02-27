@@ -79,21 +79,21 @@ var QuizContainer = React.createClass( {
       )
     } else {      
       var choices = this.state.current_question.answers.map( function( choice, index ) {
-      var classType  = "";
-      var answerId = choice.answer.id
-      if (self.state.user_choice == choice.answer.id) {
-        classType = "active"
-      }
-      if ( self.state.verifying_answer ) {
-        if (self.state.correct_answer === choice.answer.id) {
-          classType = "success";
-        } else if (self.state.wrong_answer === choice.answer.id) {
-          classType = "error";
+        var classType  = "";
+        var answerId = choice.answer.id
+        if (self.state.user_choice == choice.answer.id) {
+          classType = "active"
         }
-      }
-        return (
-          <RadioInput key={choice.answer.answer} choice={choice.answer.answer} index={index} onChoiceSelect={self.selectedAnswer} disable={self.state.verifying_answer} classType={classType} answerId = {answerId}/>
-        );
+        if ( self.state.verifying_answer ) {
+          if (self.state.correct_answer === choice.answer.id) {
+            classType = "success";
+          } else if (self.state.wrong_answer === choice.answer.id) {
+            classType = "error";
+          }
+        }
+          return (
+            <RadioInput key={choice.answer.answer} choice={choice.answer.answer} index={index} onChoiceSelect={self.selectedAnswer} disable={self.state.verifying_answer} classType={classType} answerId = {answerId}/>
+          );
       } );
       var complete = Math.round(self.state.question_count * 100 / questions.questions.length)
       var progresStyle = {
