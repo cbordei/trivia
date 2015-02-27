@@ -1,28 +1,3 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
-var quiz = [{
-  "question": "What does CSS stand for?",
-  "choices": ["Creative Style Sheets", "Computer Style Sheets", "Cascading Style Sheets"],
-  "answer": "Cascading Style Sheets"
-}, {
-  "question": "Which CSS property controls the text size?",
-  "choices": ["text-size", "font-size", "font-style"],
-  "answer": "font-size"
-}, {
-  "question": "What does HTML stand for?",
-  "choices": ["Hyperlinks and Text Markup Language", "Hyper Text Markup Language", "Home Tool Markup Language"],
-  "answer": "Hyper Text Markup Language"
-}];
-
-// {"questions":
-// [{"question":
-//   {"question":"Ce nu uita niciodata Tatae?",
-//   "answers":[
-//     {"answer":{"answer":"Banii pa show"}},
-//     {"answer":{"answer":"Heroina"}},
-//     {"answer":{"answer":"Cartieru"}},
-//     {"answer":{"answer":"Veteranii"}}]}},
-
 var QuizContainer = React.createClass( {
   getInitialState: function() {
       return {
