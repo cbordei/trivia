@@ -1,0 +1,12 @@
+- if user_signed_in?
+  #simple-nav-pills
+    %ul.nav.nav-pills
+      %li{:role => "presentation", class: active_for("trivia")}
+        = link_to "Quiz", root_path
+      %li{:role => "presentation", class: active_for("questions")}
+        = link_to "Questions", questions_path
+      %p.navbar-text.navbar-right
+        Signed in as
+        %b 
+          = current_user.email
+        = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'

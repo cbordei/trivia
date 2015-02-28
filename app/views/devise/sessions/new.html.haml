@@ -1,0 +1,12 @@
+.container
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    %h2.form-signin-heading Please sign in
+    = f.label :email, class: "sr-only"
+    = f.email_field :email, autofocus: true, class: "form-control"
+    = f.label :password, class: "sr-only"
+    = f.password_field :password, autocomplete: "off", class: "form-control"
+    - if devise_mapping.rememberable?
+      .field
+        = f.check_box :remember_me
+        = f.label :remember_me
+    %button.btn.btn-lg.btn-primary.btn-block{:type => "submit"} Sign in

@@ -5,13 +5,15 @@
     %title BugTrivia
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body    
+  %body
     - if notice
       %p.alert.alert-success 
         = notice
     - if alert
       %p.alert.alert-danger
-        = alert
-    = render "shared/navigation"    
-    = yield
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+        = alert    
+
+    = render "shared/navigation"
+    .container
+      = yield
+  = javascript_include_tag 'base', 'data-turbolinks-track' => true
