@@ -4,7 +4,7 @@ class QuestionsController < AdminController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = Question.paginate(:page => params[:page], :per_page => 12)
   end
 
   # GET /questions/1

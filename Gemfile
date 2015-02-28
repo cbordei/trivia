@@ -50,3 +50,4 @@ group :production do
   gem 'rails_12factor'
 end
 gem 'devise'
+gem 'will_paginate', '~> 3.0.6'
