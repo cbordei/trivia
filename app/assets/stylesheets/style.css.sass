@@ -1,10 +1,5 @@
-
-.custom
-  width:  340px
-*
-  padding: 0
-  margin: 0
-
+body
+  padding: 20px
 html
   font: 14px normal Arial, Helvetica, sans-serif
   color: #626771
@@ -15,22 +10,20 @@ h1
   font-weight: bold
   margin-bottom: 20px
   text-align: center
-  width: 340px
   font-family: goth
 
 #choises
-  margin: 4px
-  float: left
-  display: inline-block
   width: 340px
-  text-align: left
+  margin-left: auto
+  margin-right: auto
+  float: none
+  text-align: center
   label
     margin: 4px
     background-color: #EFEFEF
     border-radius: 4px
     border: 1px solid #D0D0D0
     overflow: auto
-
     display: block
     padding: 15px 20px
     background-color: #F8F8F8
@@ -71,15 +64,17 @@ h1
       b
         color: #fff        
 .score
-  width: 340px
   text-align: center
 .question-title
-  width: 340px
   font-size: 20px
   p
     text-align: center
 .custom-progress
-  width: 340px
+  width: 340px  
+.center
+  margin-left: auto
+  margin-right: auto
+  float: none
   text-align: center
 
 .final-results
@@ -99,3 +94,10 @@ h1
   cursor: pointer
   box-shadow: 2px 2px 2px gray
   transition: 0.3s
+
+@media screen and (max-width: 1000px)
+  #choises
+    width: 100%
+    overflow: hidden
+  .custom-progress
+    width: 100%

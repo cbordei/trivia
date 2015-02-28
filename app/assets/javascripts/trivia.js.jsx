@@ -110,7 +110,7 @@ var QuizContainer = React.createClass( {
               <div id="choises">
                 {choices}
               </div>
-              <div className="progress custom-progress">
+              <div className="progress custom-progress center">
                 <div className="progress-bar" role="progressbar" aria-valuenow="70"
                  aria-valuemin="0" aria-valuemax="100" style={progresStyle}>
                   {complete}%
@@ -147,7 +147,7 @@ var ScoreBox = React.createClass( {
   render: function() {  
     return (      
       <div className="score">        
-        <p>Scor: {this.props.score} raspunsuri corecte din {questions.questions.length} possible.</p>
+        <p>Scor: {this.props.score}/{questions.questions.length}</p>
       </div>
     );
   }

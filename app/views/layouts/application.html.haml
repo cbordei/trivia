@@ -1,8 +1,9 @@
 !!!
 %html
   %head
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title BugTrivia
+    %title B.U.G. Mafia - Trivia
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body    
@@ -14,4 +15,8 @@
         = alert
     = render "shared/navigation"    
     = yield
+    %footer{class: "footer"}
+      .container-fluid.center
+        %a{href: "https://github.com/cbordei/trivia", target: "blank"}
+          = image_tag "github_logo.png", size: "30x30"
   = javascript_include_tag 'application', 'data-turbolinks-track' => true

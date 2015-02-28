@@ -63,6 +63,9 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
     erubis (2.7.0)
     execjs (2.3.0)
     haml (4.0.6)
@@ -203,6 +206,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   coffee-rails (~> 4.0.0)
   devise
+  dotenv-rails
   haml-rails (~> 0.8)
   jbuilder (~> 2.0)
   jquery-rails

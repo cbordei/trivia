@@ -1,4 +1,4 @@
-.container
+.container-fluid
   = form_for(@question) do |f|
     - if @question.errors.any?
       - @question.errors.full_messages.each do |message|

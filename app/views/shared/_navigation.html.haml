@@ -6,7 +6,4 @@
       %li{:role => "presentation", class: active_for("questions")}
         = link_to "Questions", questions_path
       %p.navbar-text.navbar-right
-        Signed in as
-        %b 
-          = current_user.email
         = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'
