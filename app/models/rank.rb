@@ -12,26 +12,23 @@ class Rank
     "Veteran"
   ]
 
-  def initialize(score)
+  def initialize(score, quiz_length)
     @score = score.to_i
+    @quiz_length = quiz_length
   end
 
   def rank_name
-    @rank_name ||= RANKS[closest_percentage] 
+    @rank_name ||= RANKS[closest_percentage.round] 
   end
 
   private
 
-  def questions_count
-    @questions_count ||= Question.count
-  end
-
   def percentage
-    ((@score * 100) / questions_count).round(2)
+    ((@score * 100) / @quiz_length).round(2)
   end
 
   def closest_percentage
-    (1..7).min_by {|x| (x.to_f - percentage/100).abs}
+    (percentage.to_f * RANKS.count)/100    
   end
 
   

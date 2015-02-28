@@ -4,6 +4,6 @@ class TriviaController < ApplicationController
   end
 
   def ranking
-    @rank = Rank.new(params[:score])
+    @rank = Rank.new(params[:score], ENV['QUIZ_LENGTH'])
   end
 end
