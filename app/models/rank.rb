@@ -14,7 +14,7 @@ class Rank
 
   def initialize(score, quiz_length)
     @score = score.to_i
-    @quiz_length = quiz_length
+    @quiz_length = quiz_length.to_i
   end
 
   def rank_name
