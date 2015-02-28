@@ -155,5 +155,5 @@ var ScoreBox = React.createClass( {
 
 React.render(
   <QuizContainer />,
-  document.body
+  document.querySelector('#js-quiz-container')
 );
