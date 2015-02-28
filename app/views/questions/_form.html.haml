@@ -1,0 +1,14 @@
+.container
+  = form_for(@question) do |f|
+    - if @question.errors.any?
+      - @question.errors.full_messages.each do |message|
+        %p.alert.alert-danger= message      
+    .form-group
+      = f.label :question
+      = f.text_field :question, id: "question", class: "form-control"
+      = f.fields_for :answers do |answers_form|
+        = answers_form.label :answer
+        = answers_form.label :is_correct
+        = answers_form.check_box :is_correct
+        = answers_form.text_field :answer, id: "answer", class: "form-control"        
+    %button.btn.btn-default{:type => "submit"} Submit

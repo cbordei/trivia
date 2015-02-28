@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :answer, only: [] do
     get :check_answer, :on => :member
   end
+  resources :questions
 end
