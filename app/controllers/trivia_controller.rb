@@ -1,6 +1,6 @@
 class TriviaController < ApplicationController
   def index
-    @questions = Question.all.offset(rand(20)).last(ENV['QUIZ_LENGTH']).shuffle    
+    @questions = Question.all.offset(rand(Question.count)).last(ENV['QUIZ_LENGTH']).shuffle    
   end
 
   def ranking
