@@ -1,6 +1,7 @@
 class TriviaController < ApplicationController
   def index
-    @questions = Question.all.offset(rand(Question.count)).last(ENV['QUIZ_LENGTH']).shuffle    
+    random_ids = Question.pluck(:id).sort_by { rand }.slice(0, ENV['QUIZ_LENGTH'].to_i)
+    @questions = Question.where(:id => random_ids)
   end
 
   def ranking
