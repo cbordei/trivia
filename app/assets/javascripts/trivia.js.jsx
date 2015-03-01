@@ -162,14 +162,12 @@ var FacebookShare = React.createClass( {
       link: window.location.origin,
       caption: 'Rezultatul meu a fost: ' + this.props.rank,
       description: "Am facut testul B.U.G Mafia",
-      picture: window.location.origin+"/assets/maxresdefault.jpg"
+      picture: window.location.origin + $("#share_image_tag").attr("src")
     }, function(response){});
   },
   render: function() {
     return (
-      <a href="#" id="js-share" onClick={this.handleClick} >
-        <img src="/assets/facebook-share-buttons.png"/>
-      </a>     
+      <a href="#" id="js-share" className="center" onClick={this.handleClick} />
     );
   }
 }); 
