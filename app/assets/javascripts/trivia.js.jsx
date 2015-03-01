@@ -158,7 +158,6 @@ var ScoreBox = React.createClass( {
 var FacebookShare = React.createClass( {
   handleClick: function() {
     FB.ui({
-      app_id: "646413072132093",
       method: 'feed',
       link: window.location.origin,
       caption: 'Rezultatul meu a fost: ' + this.props.rank,
