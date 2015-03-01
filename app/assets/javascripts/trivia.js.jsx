@@ -72,6 +72,8 @@ var QuizContainer = React.createClass( {
                 Rezultatul tau este {this.state.score} din {questions.questions.length}
                 <br/>
                 Ai rangul de <b>{this.state.rankName}</b>
+                <br/>
+                <FacebookShare score={this.state.score} rank={this.state.rankName} />
               </div>
             </div>
           </div>          
@@ -152,6 +154,26 @@ var ScoreBox = React.createClass( {
     );
   }
 } );
+
+var FacebookShare = React.createClass( {
+  handleClick: function() {
+    FB.ui({
+      app_id: "646413072132093",
+      method: 'feed',
+      link: window.location.origin,
+      caption: 'Rezultatul meu a fost: ' + this.props.rank,
+      description: "Am facut testul B.U.G Mafia",
+      picture: window.location.origin+"/assets/maxresdefault.jpg"
+    }, function(response){});
+  },
+  render: function() {
+    return (
+      <a href="#" id="js-share" onClick={this.handleClick} >
+        <img src="/assets/facebook-share-buttons.png"/>
+      </a>     
+    );
+  }
+}); 
 
 React.render(
   <QuizContainer />,

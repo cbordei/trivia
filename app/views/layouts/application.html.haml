@@ -6,14 +6,15 @@
     %title B.U.G. Mafia - Trivia
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body    
+  %body  
+    = render "shared/scripts"  
     - if notice
       %p.alert.alert-success 
         = notice
     - if alert
       %p.alert.alert-danger
         = alert
-    = render "shared/navigation"    
+    = render "shared/navigation"
     = yield
     %footer{class: "footer"}
       .container-fluid.center
