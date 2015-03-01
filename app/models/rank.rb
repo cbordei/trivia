@@ -13,12 +13,12 @@ class Rank
   ]
 
   def initialize(score, quiz_length)
-    @score = score.to_i
-    @quiz_length = quiz_length.to_i
+    @score = score
+    @quiz_length = quiz_length
   end
 
   def rank_name
-    @rank_name ||= RANKS[closest_percentage.round] 
+    @rank_name ||= RANKS[closest_percentage]
   end
 
   private
@@ -28,8 +28,8 @@ class Rank
   end
 
   def closest_percentage
-    (percentage.to_f * RANKS.count)/100    
+    i = ((percentage.to_f * RANKS.count)/100).round
+    i -= 1 if i == RANKS.count
+    i 
   end
-
-  
 end

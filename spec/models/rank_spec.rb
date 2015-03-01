@@ -25,6 +25,12 @@ RSpec.describe Rank, type: :model do
       @score = 25
       @length = 30
       expect(rank.rank_name).to eq("Veteran")
+    end
+
+    it "returns veteran for score=30 length=30" do      
+      @score = 30
+      @length = 30
+      expect(rank.rank_name).to eq("Veteran")
     end    
   end
 end
