@@ -11,7 +11,7 @@ var QuizContainer = React.createClass( {
   selectedAnswer: function( option ) {
     this.setState( { user_choice: option } );
     var url = "answer/"+option+"/check_answer";
-    if ( !_this.state.verifying_answer && option )  {
+    if ( !this.state.verifying_answer && option )  {
       setTimeout(((function(_this) {
         return function() {
           $.ajax({
