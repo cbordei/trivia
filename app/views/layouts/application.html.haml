@@ -6,10 +6,10 @@
     %title B.U.G. Mafia - Trivia
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body  
-    = render "shared/scripts"  
+  %body
+    = render "shared/scripts"
     - if notice
-      %p.alert.alert-success 
+      %p.alert.alert-success
         = notice
     - if alert
       %p.alert.alert-danger
@@ -18,9 +18,9 @@
     = yield
     %footer{class: "footer"}
       .container-fluid.center
-        = "Powered by A.E.B. & "
-        %a{href: "https://github.com/cbordei/trivia", target: "blank"}
-          = image_tag "github_logo.png", size: "30x30"
+        = "Powered by A.E.B."
+        / %a{href: "https://github.com/cbordei/trivia", target: "blank"}
+        /   = image_tag "github_logo.png", size: "30x30"
 
     .hidden
       = image_tag "maxresdefault.jpg", id: "share_image_tag"

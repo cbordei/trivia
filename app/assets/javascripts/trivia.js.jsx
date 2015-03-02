@@ -31,9 +31,10 @@ var QuizContainer = React.createClass( {
               } );
             }.bind(_this)
           });
-          _this.setState( { verifying_answer: true } );
+
         };
       })(this)), 1000);
+      this.setState( { verifying_answer: true } );
     }
 
     setTimeout(((function(_this) {
