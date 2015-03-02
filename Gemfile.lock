@@ -136,6 +136,7 @@ GEM
     rdoc (4.2.0)
       json (~> 1.4)
     react-source (0.12.2)
+    recaptcha (0.3.6)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     rspec-core (3.2.1)
@@ -216,6 +217,7 @@ DEPENDENCIES
   rails (= 4.1.0)
   rails_12factor
   react-rails (~> 1.0.0.pre)!
+  recaptcha
   rspec-rails (~> 3.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

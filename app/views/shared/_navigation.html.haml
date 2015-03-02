@@ -5,5 +5,7 @@
         = link_to "Quiz", root_path
       %li{:role => "presentation", class: active_for("questions")}
         = link_to "Questions", questions_path
+      %li{:role => "presentation", class: active_for("suggestions")}
+        = link_to "Suggestions", suggestions_path
       %p.navbar-text.navbar-right
         = link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'

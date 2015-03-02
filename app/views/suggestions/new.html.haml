@@ -1,0 +1,17 @@
+%h1
+  = "B.U.G. Mafia Quiz"
+.container-fluid  
+  = form_for(@suggestion) do |f|
+    - if @suggestion.errors.any?
+      - @suggestion.errors.full_messages.each do |message|
+        %p.alert.alert-danger= message      
+    .form-group
+      = f.label :email
+      = f.text_field :email, id: "email", class: "form-control", placeholder: "actionar@sc-strazile.ro"
+      = f.label :suggestion
+      = f.text_area :suggestion, id: "suggestion", class: "form-control", placeholder: "Cat de lunga e povestea? Fara sfarsit etc"
+      = "Test Anti-Gabor"
+      = recaptcha_tags
+    %button.btn.btn-default{:type => "submit"} Submit
+    %br
+    = link_to "Back", root_path

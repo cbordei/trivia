@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     get :check_answer, :on => :member
   end
   resources :questions
+  resources :suggestions, only: [:new, :create, :index]
 end

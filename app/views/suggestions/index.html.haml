@@ -1,0 +1,18 @@
+%h1 Listing Suggestions  
+.table-responsive
+  %table.table
+    %thead
+      %tr
+        %th #
+        %th Question
+        %th 
+        %th 
+        %th 
+    %tbody
+      - @suggestions.each do |suggestion|
+        %tr
+          %td= suggestion.id
+          %td= suggestion.email
+          %td= suggestion.suggestion
+
+= will_paginate @suggestions
