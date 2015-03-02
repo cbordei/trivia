@@ -11,9 +11,9 @@ var QuizContainer = React.createClass( {
   selectedAnswer: function( option ) {
     this.setState( { user_choice: option } );
     var url = "answer/"+option+"/check_answer";
-    setTimeout(((function(_this) {
-      return function() {
-        if ( !_this.state.verifying_answer && option )  {
+    if ( !_this.state.verifying_answer && option )  {
+      setTimeout(((function(_this) {
+        return function() {
           $.ajax({
             url: url,
             dataType: 'json',
@@ -32,10 +32,10 @@ var QuizContainer = React.createClass( {
             }.bind(_this)
           });
           _this.setState( { verifying_answer: true } );
-        }
-      };
-    })(this)), 1000);
-    
+        };
+      })(this)), 1000);
+    }
+
     setTimeout(((function(_this) {
       return function() {
         if ( _this.state.question_count < questions.questions.length -1 ) {
@@ -51,15 +51,15 @@ var QuizContainer = React.createClass( {
             url: url,
             dataType: 'json',
             type: 'GET',
-            success: function(data) {          
+            success: function(data) {
               _this.setState({rankName: data.rank.rank_name})
-            }.bind(this)      
+            }.bind(this)
           });
           _this.setState({finished: true})
         }
       };
     })(this)), 2500);
-  },  
+  },
   render: function() {
     var self = this;
     if (this.state.finished) {
@@ -76,10 +76,10 @@ var QuizContainer = React.createClass( {
                 <FacebookShare score={this.state.score} rank={this.state.rankName} />
               </div>
             </div>
-          </div>          
+          </div>
         </div>
       )
-    } else {      
+    } else {
       var choices = this.state.current_question.answers.map( function( choice, index ) {
         var classType  = "";
         var answerId = choice.answer.id
@@ -108,7 +108,7 @@ var QuizContainer = React.createClass( {
               <h1>B.U.G. Mafia Quiz</h1>
               <div className="question-title">
                 <p>{this.state.current_question.question}</p>
-              </div>  
+              </div>
               <div id="choises">
                 {choices}
               </div>
@@ -120,10 +120,10 @@ var QuizContainer = React.createClass( {
               </div>
               <ScoreBox score={this.state.score} current_question={this.state.question_count} />
             </div>
-          </div>          
+          </div>
         </div>
       );
-    }    
+    }
   }
 } );
 
@@ -146,9 +146,9 @@ var RadioInput = React.createClass( {
 } );
 
 var ScoreBox = React.createClass( {
-  render: function() {  
-    return (      
-      <div className="score">        
+  render: function() {
+    return (
+      <div className="score">
         <p>Scor: {this.props.score}/{questions.questions.length}</p>
       </div>
     );
@@ -170,7 +170,7 @@ var FacebookShare = React.createClass( {
       <a href="#" id="js-share" className="center" onClick={this.handleClick} />
     );
   }
-}); 
+});
 
 React.render(
   <QuizContainer />,
