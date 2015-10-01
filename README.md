@@ -1,4 +1,4 @@
-== README
+# README
 
 [BUG Mafia Trivia](http://bug-trivia.herokuapp.com/)
 
@@ -10,7 +10,7 @@ Versions:
 
 * Rails version: 4.1.0
 
-Deployment / Cloning: 
+Deployment / Cloning:
 
 * Clone repo
 
