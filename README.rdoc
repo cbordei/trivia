@@ -1,5 +1,7 @@
 == README
 
+[BUG Mafia Trivia]: http://bug-trivia.herokuapp.com/
+
 This is a test application that uses reactjs
 
 Versions:
